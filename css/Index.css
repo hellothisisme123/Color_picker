@@ -43,6 +43,10 @@ body {
     font-size: 1em;
 }
 
+.lock_btn_wrapper, .copy_btn_wrapper {
+    cursor: pointer;
+}
+
 .copy_label { /* the label that appears up whenever the user copied one of the colors */
     font-size: 1rem;
     text-align: center;
