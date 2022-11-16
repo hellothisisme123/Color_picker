@@ -1,11 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     width: 100%;
-    min-height: 70vh;
+    min-height: 100vh;
 }
 
 .colors_container {
-    width: 95%;
-    min-height: 70vh;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
     background-color: #555;
     border: 0.3vw solid #111;
     margin: 0 auto;
@@ -18,7 +24,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    border: 0.3vw solid #111;
+    /* border: 0.3vw solid #111; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,4 +40,10 @@
 
 .color_label {
     font-size: 1em;
+}
+
+.copy_label { /* the label that appears up whenever the user copied one of the colors */
+    font-size: 5em;
+    display: inline;
+    text-align: center;
 }
