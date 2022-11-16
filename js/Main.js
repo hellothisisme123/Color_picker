@@ -1,17 +1,17 @@
 setTimeout(() => {
 
-const random_hex = () => {
-    const hexex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
-    let r1 = hexex[random_min_max_int(0, 15)],
-        g1 = hexex[random_min_max_int(0, 15)],
-        b1 = hexex[random_min_max_int(0, 15)],
-        r2 = hexex[random_min_max_int(0, 15)],
-        g2 = hexex[random_min_max_int(0, 15)],
-        b2 = hexex[random_min_max_int(0, 15)];
+// const random_hex = () => {
+//     const hexex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+//     let r1 = hexex[random_min_max_int(0, 15)],
+//         g1 = hexex[random_min_max_int(0, 15)],
+//         b1 = hexex[random_min_max_int(0, 15)],
+//         r2 = hexex[random_min_max_int(0, 15)],
+//         g2 = hexex[random_min_max_int(0, 15)],
+//         b2 = hexex[random_min_max_int(0, 15)];
     
-    let hex = `#${r1}${g1}${b1}${r2}${g2}${b2}`;
-    return hex;
-}
+//     let hex = `#${r1}${g1}${b1}${r2}${g2}${b2}`;
+//     return hex;
+// }
 
 class color_picker {
     constructor(
@@ -38,7 +38,6 @@ class color_picker {
                 'lock_btn': '',
                 'color_label': ''
             });
-            log(this.items[picker_i]);
             
 
             //_-==-_| colored div |_-==-_\\
@@ -62,17 +61,23 @@ class color_picker {
             copy_btn.innerHTML = '<i class="fa-solid fa-copy"></i>';//sets the innerhtml
             colored_div.appendChild(copy_btn);                      //appends the wrapper to the div
             copy_btn.addEventListener('click', (e) => {    
-                log(this.items[picker_i].color)
                 navigator.clipboard.writeText(this.items[picker_i].color).catch((err) => { //if it fails
                     log('could not copy');
                     log(err);
                 });  
                 
-                log('hello')
+                console.log(
+                    document.querySelectorAll('.copy_label').forEach(item => {
+                        setTimeout(() => {
+                            item.remove();
+                        }, 1000);
+                    })
+                );
                 let tmp_copy_label = document.createElement('p');
-                tmp_copy_label.innerHTML = `copied ${this.color}`;
+                tmp_copy_label.innerHTML = `copied ${this.items[picker_i].color}`;
                 tmp_copy_label.classList.add('copy_label');
                 document.body.appendChild(tmp_copy_label);
+                
             });
 
             //==| lock |==\\
@@ -82,6 +87,7 @@ class color_picker {
             colored_div.appendChild(lock_btn);                      //appends the wrapper to the div
             this.items[picker_i].lock_btn = lock_btn;               //lock button selector in the object
 
+            if (typeof log == 'function') log(this.items[picker_i]); 
         }
 
         this.items.forEach(item => {
@@ -98,8 +104,8 @@ class color_picker {
         });
 
         window.addEventListener('keypress', (e) => {
-            if (event.key == ' ') { //runs only on Spacebar press
-                event.preventDefault();
+            if (e.key == ' ') { //runs only on Spacebar press
+                e.preventDefault();
                 this.items.forEach(item => {
                     if (!item.locked) { //randomized the colors on unlocked items
                         item.color = random_hex();                                  //sets the item color data
@@ -112,7 +118,7 @@ class color_picker {
     }
 }
 
-const picker = new color_picker(25);
+const picker = new color_picker(5);
 picker.spawn();
 
 

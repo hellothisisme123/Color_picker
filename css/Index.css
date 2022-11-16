@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
 }
 
 .container {
@@ -11,7 +12,7 @@ body {
 .colors_container {
     width: 100%;
     box-sizing: border-box;
-    height: 100%;
+    min-height: 100vh;
     background-color: #555;
     border: 0.3vw solid #111;
     margin: 0 auto;
@@ -43,7 +44,24 @@ body {
 }
 
 .copy_label { /* the label that appears up whenever the user copied one of the colors */
-    font-size: 5em;
-    display: inline;
+    font-size: 1rem;
     text-align: center;
+    display: inline;
+    width: 100%;
+    position: fixed;
+    bottom: 1rem;
+    margin: 0 auto;
+    animation: copy_label_fade_up 2s 1 forwards;
+}
+
+@keyframes copy_label_fade_up {
+    0% {
+        transform: translateY(0px);
+        opacity: 0.3;
+    }
+    90% { opacity: 0; }
+    100% {
+        transform: translateY(-2rem);
+        opacity: 0;
+    }
 }
